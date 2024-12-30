@@ -1,0 +1,241 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #333 !important;
+}
+
+.navbar-nav .nav-link {
+  color: #555 !important;
+  font-size: 1rem;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.navbar-nav .nav-link.active {
+  background-color: #ff8c00;
+  color: #fff !important;
+  border-radius: 8px;
+}
+
+.banner-area {
+  background: linear-gradient(to bottom, #ff8c00, #ffffff);
+  padding: 30px 0;
+  color: #fff;
+}
+
+.banner-text h4 {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.banner-text p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.slider-area {
+  background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 20px;
+}
+
+.slider-content h1 {
+  color: #ff8c00;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.slider-content h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.slider-content h3 {
+  color: #555;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.slider-content .btn-success {
+  background-color: #ff8c00;
+  border-color: #ff8c00;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.slider-content .btn-success:hover {
+  background-color: #e67e00;
+  border-color: #e67e00;
+}
+
+.category-btn {
+  background-color: #ff8c00;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-right: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+.category-btn:hover, .category-btn.active {
+  background-color: #e67e00;
+}
+
+.category-section {
+  display: none;
+  margin-top: 20px;
+}
+
+.category-section.active {
+  display: block;
+}
+
+.book-card .card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.book-card img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.book-card .card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.book-card .card-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.btn-primary {
+  background-color: #ff8c00;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #e67e00;
+  border-color: #e67e00;
+}
+
+/* Accessibility improvements */
+a, button {
+  outline: none;
+}
+
+a:focus, button:focus {
+  outline: 2px solid #ff8c00;
+  outline-offset: 2px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .book-card {
+    margin-bottom: 20px;
+  }
+}
+.slider-area{
+background-image: url('../static/img/6.png'); /* 背景图像路径 */
+background-size: cover; /* 图像覆盖整个容器 */
+background-position: center center; /* 使背景图居中显示 */
+background-repeat: no-repeat;
+height:600px;
+}
+
+.footer-area {
+    background-color: #fff;
+    color: #333;
+    border-top: 1px solid #e6e6e6;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .footer-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .footer-links,
+  .footer-social {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .footer-links li,
+  .footer-social li {
+    margin-bottom: 10px;
+  }
+
+  .footer-links a,
+  .footer-social a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a:hover,
+  .footer-social a:hover {
+    color: #ff8c00;
+  }
+
+  .footer-social i {
+    font-size: 1.5rem;
+    color: #555;
+    transition: color 0.3s ease;
+  }
+
+  .footer-social i:hover {
+    color: #ff8c00;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .footer-area {
+      text-align: center;
+    }
+    .footer-links {
+      margin-top: 20px;
+    }
+  }

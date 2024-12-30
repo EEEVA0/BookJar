@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css'>
+    <link rel="stylesheet" href="./static/style1.css">
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert-container">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="myCard">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="myLeftCtn">
+                    <form class="myForm text-center needs-validation" method="POST" novalidate>
+                        <header style="color:#B36200">login</header>
+                        <div class="form-group">
+                            <label for="login_type">Login type：</label>
+                            <select class="form-control" id="login_type" name="login_type" required>
+                                <option value="user">user login</option>
+                                <option value="admin">Administrator login</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <input class="myInput" type="text" id="username" name="username" placeholder="username" required aria-label="username">
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-lock"></i>
+                            <input class="myInput" type="password" id="password" name="password" placeholder="password" required aria-label="password">
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <input type="submit" class="butt" value="login">
+
+                        <p>No account yet？ <a href="{{ url_for('register') }}" style="color:#0051A8">click to register</a></p>
+                        <a href="{{ url_for('index') }}" class="back-to-home" style="color:#0051A8">home back</a>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="myRightCtn">
+                    <div class="box">
+                        <header>BookJar</header>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

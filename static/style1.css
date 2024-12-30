@@ -1,0 +1,271 @@
+body {
+    background: #fffaf3; /* 柔和的白色背景，带有温暖感 */
+}
+
+.container {
+    position: absolute;
+    max-width: 800px;
+    height: 500px;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.myRightCtn {
+    position: relative;
+    background-image: linear-gradient(45deg, #ffa64d, #ff8c00); /* 橙色渐变背景 */
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px;
+    color: #ffffff;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myLeftCtn {
+    position: relative;
+    background: #ffffff; /* 纯白背景 */
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px;
+    padding-left: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影，增强层次感 */
+}
+
+.myLeftCtn header {
+    color: #ff8c00; /* 明亮的橙色标题 */
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.row {
+    height: 100%;
+}
+
+.myCard {
+    background: #ffffff; /* 卡片背景纯白 */
+    height: 100%;
+    border-radius: 25px;
+    box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.1); /* 温和阴影 */
+}
+
+.myRightCtn header {
+    color: #fff; /* 文字为纯白 */
+    font-size: 44px;
+}
+
+.box {
+    position: relative;
+    margin: 20px;
+    margin-bottom: 100px;
+}
+
+.myLeftCtn .myInput {
+    width: 230px;
+    border-radius: 25px;
+    padding: 10px;
+    padding-left: 50px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.myLeftCtn .myInput:focus {
+    outline: none;
+    border-color: #ff8c00; /* 橙色边框 */
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.3); /* 轻微橙色阴影 */
+}
+
+.myForm {
+    position: relative;
+    margin-top: 50px;
+}
+
+.myLeftCtn .butt {
+    background: linear-gradient(45deg, #ffa64d, #ff8c00); /* 橙色渐变 */
+    color: #fff;
+    width: 230px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.myLeftCtn .butt:hover {
+    background: linear-gradient(45deg, #ffb973, #ffa64d); /* 更浅的橙色渐变 */
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.3);
+}
+
+.myLeftCtn .butt:focus {
+    outline: none;
+}
+
+.myLeftCtn .fas {
+    position: relative;
+    color: #ff8c00; /* 橙色图标 */
+    left: 36px;
+}
+
+.butt_out {
+    background: transparent;
+    color: #fff;
+    width: 120px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    padding: 10px;
+    box-shadow: 0px 10px 40px -14px rgba(0, 0, 0, 0.1);
+}
+
+.butt_out:hover {
+    border: 2px solid #ffe5d1; /* 浅橙色边框 */
+    color: #ffe5d1;
+}
+
+.butt_out:focus {
+    outline: none;
+}
+
+.navbar-nav .nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
+.navbar-brand svg {
+    width: 30px;
+    height: 30px;
+}
+
+.navbar-nav .nav-item {
+    position: relative;
+}
+
+.navbar-nav .nav-item .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.btn-shop-now {
+    background-color: #ff8c00; /* 橙色按钮 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-shop-now:hover {
+    background-color: #e67e00;
+    color: #fff;
+}
+
+.custom-button {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #e67e00;
+}
+
+.inner-page-heading h2 {
+    font-size: 20px;
+    color: #ff8c00;
+}
+
+.parallax-window {
+    background-image: url('./static/img/5.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 800px;
+}
+
+.comment-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fffaf3;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item p {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.comment-item .username {
+    font-weight: bold;
+    color: #ff8c00;
+}
+
+.card-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+    .navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e6e6e6;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #333 !important;
+}
+
+.navbar-toggler {
+    border-color: #ff8c00;
+}
+
+.navbar-nav .nav-link {
+    color: #555 !important;
+    font-size: 1rem;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.navbar-nav .nav-link.active {
+    background-color: #ff8c00;
+    color: #fff !important;
+    border-radius: 8px;
+}
+.navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #333 !important;
+        }
+

@@ -1,0 +1,115 @@
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e6e6e6;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #333 !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #555 !important;
+      font-size: 1rem;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+
+
+
+    .book-image img {
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .price .old-price {
+      font-size: 1.5rem;
+      color: #ff8c00;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background-color: #ff8c00;
+      border-color: #ff8c00;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      background-color: #e67e00;
+      border-color: #e67e00;
+    }
+
+    .description {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .comment-item {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e6e6e6;
+      padding-bottom: 10px;
+    }
+
+    .comment-item .username {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .comment-item p {
+      color: #555;
+      margin: 5px 0 0;
+    }
+
+    textarea {
+      border-radius: 8px;
+    }
+
+    a.btn-secondary {
+      border-radius: 8px;
+    }
+
+    .parallax-window {
+      background: linear-gradient(to bottom, #ff8c00, #ffffff);
+      padding: 30px 0;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .parallax-window h2 {
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 2rem;
+    }
+
+    .icons i {
+      margin-right: 15px;
+      color: #ff8c00;
+      font-size: 1.5rem;
+    }
+
+  .btn-primary.favorite-btn {
+    color: #0A0A0A;
+  }
+

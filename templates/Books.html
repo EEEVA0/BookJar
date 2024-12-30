@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders List</title>
+</head>
+<body>
+    <h1>Orders List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Order</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in orders %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.price }}</td>
+                <td>{{ book.currency }}</td>
+                <td>{{ book.category }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

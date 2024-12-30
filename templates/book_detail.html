@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ book.name }} - 图书详情</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e6e6e6;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #333 !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: #555 !important;
+      font-size: 1rem;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+
+
+
+    .book-image img {
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .price .old-price {
+      font-size: 1.5rem;
+      color: #ff8c00;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background-color: #ff8c00;
+      border-color: #ff8c00;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      background-color: #e67e00;
+      border-color: #e67e00;
+    }
+
+    .description {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .comment-item {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e6e6e6;
+      padding-bottom: 10px;
+    }
+
+    .comment-item .username {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .comment-item p {
+      color: #555;
+      margin: 5px 0 0;
+    }
+
+    textarea {
+      border-radius: 8px;
+    }
+
+    a.btn-secondary {
+      border-radius: 8px;
+    }
+
+    .parallax-window {
+      background: linear-gradient(to bottom, #ff8c00, #ffffff);
+      padding: 30px 0;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .parallax-window h2 {
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 2rem;
+    }
+
+    .icons i {
+      margin-right: 15px;
+      color: #ff8c00;
+      font-size: 1.5rem;
+    }
+
+  .btn-primary.favorite-btn {
+    color: #0A0A0A;
+  }
+
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand" href="{{ url_for('index') }}">BookJar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% if session.get('user_id') %}{{ url_for('favorites') }}{% else %}{{ url_for('login') }}{% endif %}">
+            <i class="fas fa-heart"></i> favorite
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% if session.get('user_id') %}{{ url_for('recommendations') }}{% else %}{{ url_for('login') }}{% endif %}">
+            <i class="fas fa-book"></i> recommendation
+          </a>
+        </li>
+        {% if session.get('user_id') %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('profile') }}">
+              <i class="fas fa-user"></i> user-center
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">
+              <i class="fas fa-sign-out-alt"></i> quit
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">
+              <i class="fas fa-user"></i> login/logout
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container mt-3">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+<div class="parallax-window">
+  <div class="container">
+    <div class="inner-page-heading">
+      <h2>{{ book.name }} - Book details</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="container">
+  <div class="row">
+
+    <div class="col-md-4">
+      <br><br>
+      <div class="book-image">
+        <img src="{{ url_for('static', filename=book.img_paths) }}" alt="{{ book.name }}" class="img-fluid" style="border-radius: 8px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); max-height: 450px; object-fit: cover;">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <br><br>
+      <h1>{{ book.name }}</h1>
+      <div class="price">
+        <span class="old-price" style="color:#A85D00">{{ book.price }} {{ book.currency }}</span>
+      </div>
+      <div class="mt-3">
+  <div id="favorite-actions">
+    {% if is_favorite %}
+      <button id="remove-favorite-btn" class="btn btn-danger" style="border-radius: 8px;">
+        <i class="fas fa-heart-broken"></i> remove from favorite
+      </button>
+    {% else %}
+      <button id="add-favorite-btn" class="btn btn-primary favorite-btn" style="border-radius: 8px;">
+        <i class="fas fa-heart"></i> add to favorite
+      </button>
+    {% endif %}
+  </div>
+</div>
+  <div class="description mt-4">
+    <p>{{ book.description[:800] }}...</p>
+  </div>
+    </div>
+  </div>
+</div>
+<h3 class="mt-5">comment</h3>
+<form method="POST" action="{{ url_for('add_comment', order=book.order) }}">
+  <div class="form-group">
+    <label for="content" class="font-weight-bold">write a comment</label>
+    <textarea class="form-control" id="content" name="content" rows="4" placeholder="Write your comments..." required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary mt-2" style="color:#0A0A0A">submit</button>
+</form>
+<h3 class="mt-4">lately comment</h3>
+{% if book.book_comments %}
+  <ul class="list-unstyled mt-3">
+    {% for comment in book.book_comments %}
+      <li class="comment-item p-3 mb-3" style="border: 1px solid #e6e6e6; border-radius: 8px; background-color: #ffffff; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);">
+        <div class="d-flex align-items-center mb-2">
+          <div class="user-avatar" style="width: 50px; height: 50px; border-radius: 50%; background-color: #ff8c00; display: flex; align-items: center; justify-content: center; color: #000000; font-size: 1.5rem; margin-right: 10px;">
+            {{ comment.user.username[0].upper() }}
+          </div>
+          <div>
+            <div class="username font-weight-bold text-dark">{{ comment.user.username }}</div>
+            <small class="text-muted">{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+          </div>
+        </div>
+        <p class="text-dark mt-2" style="line-height: 1.6;">{{ comment.content }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <div class="alert alert-info mt-3" style="border-radius: 8px;">no comment</div>
+{% endif %}
+  <a href="{{ url_for('index') }}" class="btn btn-secondary mt-4">back to index</a>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  document.addEventListener('click', function (event) {
+    if (event.target.id === 'add-favorite-btn') {
+      fetch('{{ url_for("add_to_favorites", book_order=book.order) }}', { method: 'POST' })
+        .then(response => {
+          if (response.ok) {
+            document.getElementById('favorite-actions').innerHTML = `
+              <button id="remove-favorite-btn" class="btn btn-danger" style="border-radius: 8px;">
+                <i class="fas fa-heart-broken"></i> remove from favorite
+              </button>
+            `;
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    if (event.target.id === 'remove-favorite-btn') {
+      fetch('{{ url_for("remove_from_favorites", book_order=book.order) }}', { method: 'POST' })
+        .then(response => {
+          if (response.ok) {
+            document.getElementById('favorite-actions').innerHTML = `
+              <button id="add-favorite-btn" class="btn btn-primary" style="border-radius: 8px; color: #0A0A0A;">
+                <i class="fas fa-heart"></i> add to favorite
+              </button>
+            `;
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  });
+</script>
+</body>
+</html>

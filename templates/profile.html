@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user-center</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ffffff;
+            border-right: 1px solid #e6e6e6;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h3 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            color: #555 !important;
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin-bottom: 5px;
+            border-radius: 0 25px 25px 0;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .nav-link:hover {
+            background-color: #f9f9f9;
+            color: #333 !important;
+        }
+
+        .nav-link.active {
+            background-color: #ff8c00;
+            color: #fff !important;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background-color: #ff8c00;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .content {
+            margin-left: 270px;
+            flex: 1;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #ff8c00;
+            color: white;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 15px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .comment-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 12px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background-color: #ff8c00;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: none;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e67e00;
+        }
+
+        .alert {
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                box-shadow: none;
+                border-right: none;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">BookJar</a>
+    </div>
+</nav>
+<div class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>user-center</h3>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showPage('updateUsername')"><i class="fas fa-user-edit"></i> rename username</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showPage('updatePassword')"><i class="fas fa-key"></i> rename password</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showPage('viewComments')"><i class="fas fa-comments"></i> view my comment</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content" id="content">
+        <div id="updateUsername">
+            <div class="card">
+                <div class="card-header" style="color:#0A0A0A">rename username</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('update_username') }}">
+                        <div class="form-group">
+                            <label for="new_username">new username</label>
+                            <input type="text" class="form-control" id="new_username" name="new_username" minlength="3" maxlength="20" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="color:#0A0A0A">submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="updatePassword" style="display: none;">
+            <div class="card">
+                <div class="card-header" style="color:#0A0A0A">rename password</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('update_password') }}">
+                        <div class="form-group">
+                            <label for="current_password">current password</label>
+                            <input type="password" class="form-control" id="current_password" name="current_password" maxlength="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password">new password</label>
+                            <input type="password" class="form-control" id="new_password" name="new_password" minlength="6" maxlength="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">confirm password</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="3" maxlength="20" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="color:#0A0A0A">submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="viewComments" style="display: none;">
+            <div class="card">
+                <div class="card-header" style="color:#0A0A0A">my comments</div>
+                <div class="card-body">
+                    {% if comments_with_books %}
+                        <ul class="list-group">
+                            {% for item in comments_with_books %}
+                                <li class="list-group-item">
+                                    <p><strong>book:</strong> {{ item.book.name }}</p>
+                                    <p><strong>author:</strong> {{ item.book.author }}</p>
+                                    <p><strong>time:</strong> {{ item.comment.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                                    <p>{{ item.comment.content }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>You haven't made any comments yet。</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showPage(pageId) {
+        document.getElementById('updateUsername').style.display = 'none';
+        document.getElementById('updatePassword').style.display = 'none';
+        document.getElementById('viewComments').style.display = 'none';
+
+        const selectedPage = document.getElementById(pageId);
+        if (selectedPage) {
+            selectedPage.style.display = 'block';
+        }
+
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        const activeLink = document.querySelector(`.nav-link[onclick="showPage('${pageId}')"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlHash = window.location.hash.substring(1);
+        const validPages = ['updateUsername', 'updatePassword', 'viewComments'];
+
+        if (validPages.includes(urlHash)) {
+            showPage(urlHash);
+        } else {
+            showPage('updateUsername');
+        }
+    });
+</script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
